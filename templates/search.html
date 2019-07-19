@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Url shortener</title>
+    <meta name="description" content="Url shortener">
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h1>
+      <a href="/">Shorten your urls!</a>
+    </h1>
+    {% if not matches %}
+        No result for the search <em>{{ query }}</em>
+    {% else %}
+        Results for the search <em>{{ query }}</em>
+        <ul>
+          {% for row in matches %}
+            <li>The url {{ url_for('redir', key=row['key'], _external=True) }} redirects to <a href="{{ row['url'] }}">{{ row['url'] }}</a></li>
+          {% endfor %}
+        </ul>
+    {% endif %}
+  </body>
+</html>
